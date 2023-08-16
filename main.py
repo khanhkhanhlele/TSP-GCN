@@ -170,7 +170,7 @@ if notebook_mode == True:
     net = nn.DataParallel(ResidualGatedGCNModel(config, dtypeFloat, dtypeLong))
     if torch.cuda.is_available():
         net.cuda()
-    print(net)
+    #print(net)
 
     # Compute number of network parameters
     nb_param = 0
