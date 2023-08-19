@@ -282,7 +282,8 @@ def train_one_epoch(net, optimizer, config, master_bar):
     running_nb_batch = 0
 
     start_epoch = time.time()
-    for batch_num in progress_bar(range(batches_per_epoch), parent=master_bar):
+    #for batch_num in progress_bar(range(batches_per_epoch), parent=master_bar):
+    for batch_num in range(batches_per_epoch):
         # Generate a batch of TSPs
         try:
             batch = next(dataset)
@@ -290,12 +291,12 @@ def train_one_epoch(net, optimizer, config, master_bar):
             break
 
         # Convert batch to torch Variables
-        x_edges = Variable(torch.LongTensor(batch.edges).type(dtypeLong), requires_grad=False)
-        x_edges_values = Variable(torch.FloatTensor(batch.edges_values).type(dtypeFloat), requires_grad=False)
-        x_nodes = Variable(torch.LongTensor(batch.nodes).type(dtypeLong), requires_grad=False)
-        x_nodes_coord = Variable(torch.FloatTensor(batch.nodes_coord).type(dtypeFloat), requires_grad=False)
-        y_edges = Variable(torch.LongTensor(batch.edges_target).type(dtypeLong), requires_grad=False)
-        y_nodes = Variable(torch.LongTensor(batch.nodes_target).type(dtypeLong), requires_grad=False)
+        x_edges = Variable(torch.LongTensor(batch.edges).type(dtypeLong).contiguous(), requires_grad=False)
+        x_edges_values = Variable(torch.FloatTensor(batch.edges_values).type(dtypeFloat).continguous(), requires_grad=False)
+        x_nodes = Variable(torch.LongTensor(batch.nodes).type(dtypeLong).continguous(), requires_grad=False)
+        x_nodes_coord = Variable(torch.FloatTensor(batch.nodes_coord).type(dtypeFloat).continguous(), requires_grad=False)
+        y_edges = Variable(torch.LongTensor(batch.edges_target).type(dtypeLong).continguous(), requires_grad=False)
+        y_nodes = Variable(torch.LongTensor(batch.nodes_target).type(dtypeLong).continguous(), requires_grad=False)
         
         # Compute class weights (if uncomputed)
         if type(edge_cw) != torch.Tensor:
