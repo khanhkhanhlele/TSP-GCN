@@ -292,11 +292,11 @@ def train_one_epoch(net, optimizer, config, master_bar):
 
         # Convert batch to torch Variables
         x_edges = Variable(torch.LongTensor(batch.edges).type(dtypeLong).contiguous(), requires_grad=False)
-        x_edges_values = Variable(torch.FloatTensor(batch.edges_values).type(dtypeFloat).continguous(), requires_grad=False)
-        x_nodes = Variable(torch.LongTensor(batch.nodes).type(dtypeLong).continguous(), requires_grad=False)
-        x_nodes_coord = Variable(torch.FloatTensor(batch.nodes_coord).type(dtypeFloat).continguous(), requires_grad=False)
-        y_edges = Variable(torch.LongTensor(batch.edges_target).type(dtypeLong).continguous(), requires_grad=False)
-        y_nodes = Variable(torch.LongTensor(batch.nodes_target).type(dtypeLong).continguous(), requires_grad=False)
+        x_edges_values = Variable(torch.FloatTensor(batch.edges_values).type(dtypeFloat).contiguous(), requires_grad=False)
+        x_nodes = Variable(torch.LongTensor(batch.nodes).type(dtypeLong).contiguous(), requires_grad=False)
+        x_nodes_coord = Variable(torch.FloatTensor(batch.nodes_coord).type(dtypeFloat).contiguous(), requires_grad=False)
+        y_edges = Variable(torch.LongTensor(batch.edges_target).type(dtypeLong).contiguous(), requires_grad=False)
+        y_nodes = Variable(torch.LongTensor(batch.nodes_target).type(dtypeLong).contiguous(), requires_grad=False)
         
         # Compute class weights (if uncomputed)
         if type(edge_cw) != torch.Tensor:
